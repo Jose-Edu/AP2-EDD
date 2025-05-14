@@ -1,4 +1,4 @@
-public class Stack<T> {
+public class Queue<T> {
 
     private LinkedList<T> data;
 
@@ -11,14 +11,14 @@ public class Stack<T> {
     public T pop() {
 
         T rtn = this.pick();
-        data.removeEnd();
+        data.removeStart();
         return rtn;
 
     }
 
     public T pick() {
 
-        return data.getElementByIndex(data.getSize()-1);
+        return data.getElementByIndex(0);
 
     }
 

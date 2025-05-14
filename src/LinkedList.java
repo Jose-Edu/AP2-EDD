@@ -1,6 +1,7 @@
 public class LinkedList<T> {
 
-    Node2<T> head = null;
+    private Node2<T> head = null;
+    private int size = 0;
 
     public void insertEnd(T data) {
 
@@ -12,6 +13,7 @@ public class LinkedList<T> {
         }
 
         nodeC.next = node;
+        size++;
 
     }
 
@@ -21,12 +23,14 @@ public class LinkedList<T> {
 
         node.next = head;
         head = node;
+        size++;
 
     }
 
     public void removeStart() {
 
         head = head.next;
+        size--;
 
     }
 
@@ -41,6 +45,7 @@ public class LinkedList<T> {
         }
 
         prev.next = null;
+        size--;
 
     }
 
@@ -74,6 +79,10 @@ public class LinkedList<T> {
         }
         System.out.println();
 
+    }
+
+    public int getSize() {
+        return size;
     }
 
 }
