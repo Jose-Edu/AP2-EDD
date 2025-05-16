@@ -5,12 +5,20 @@ public class ListaDuplamenteLigada<T> {
     private Node<T> head;
     private Node<T> end;
     private Node<T> acNode;
+    private int size;
 
     public ListaDuplamenteLigada() {
 
         this.head = null;
         this.end = null;
         this.acNode = null;
+        this.size = 0;
+
+    }
+
+    public int getSize() {
+
+        return this.size;
 
     }
 
@@ -32,6 +40,40 @@ public class ListaDuplamenteLigada<T> {
 
         acNode = acNode.next;
         return acNode;
+
+    }
+
+    public Node<T> getNodeByIndex(int i) {
+
+        Node<T> nodeRtn = head;
+
+        for (int c = 0; c < i; c++) {
+
+            if (nodeRtn == null)
+                return null;
+
+            nodeRtn = nodeRtn.next;
+
+        }
+
+        return nodeRtn;
+
+    }
+
+    public void setNodeByIndex(int i) {
+
+        Node<T> node = head;
+
+        for (int c = 0; c < i; c++) {
+
+            if (node == null)
+                return;
+
+            node = node.next;
+
+        }
+
+        this.acNode = node;
 
     }
 
@@ -59,6 +101,7 @@ public class ListaDuplamenteLigada<T> {
         this.end.next = node;
         node.previous = this.end;
         this.end = node;
+        this.size++;
 
     }
 
@@ -74,6 +117,7 @@ public class ListaDuplamenteLigada<T> {
         this.head.previous = node;
         node.next = this.head;
         this.head = node;
+        this.size++;
 
     }
 
@@ -145,7 +189,8 @@ public class ListaDuplamenteLigada<T> {
             nodeAc = nodeAc.next;
         }
 
-    }
+        size--;
 
+    }
 
 }
