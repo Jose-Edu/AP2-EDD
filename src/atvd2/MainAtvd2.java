@@ -107,10 +107,35 @@ public class MainAtvd2 {
                             break;
 
                     }
-
                     break;
 
                 case 6: //rmv música por nome ou por index
+
+                    System.out.println("Deseja remover ou nome ou por endereço?");
+                    System.out.println("1 - Por nome");
+                    System.out.println("2 - Por endereço");
+                    System.out.println("3 - Voltar");
+
+                    op = scanner.nextInt();
+
+                    switch (op) {
+
+                        case 1: // Por nome
+                            System.out.println("Digite o nome da música:");
+                            titulo = scanner.nextLine();
+                            playlist.removerPorValor(new Song(titulo));
+                            break;
+
+                        case 2: // Por index
+                            System.out.println("Digite o endereço:");
+                            op = scanner.nextInt();
+                            playlist.removerPorIndex(op);
+                            break;
+
+                        default:
+                            System.out.println("Voltando...");
+
+                    }
                     break;
 
                 case 7: //listar músicas
