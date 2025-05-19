@@ -10,6 +10,12 @@ public class MainAtvd2 {
         Scanner scanner = new Scanner(System.in);
         int op;
 
+        String titulo;
+        String artista;
+        String album;
+        int segundos;
+        Song songHandle;
+
         while (sysOn) {
 
             System.out.println("Sistema gerenciador de músicas:");
@@ -37,6 +43,25 @@ public class MainAtvd2 {
                     break;
 
                 case 3: //ordenar por título ou por artista
+
+                    System.out.println();
+                    System.out.println("1 - Ordenar por título");
+                    System.out.println("2 - Ordenar por artista");
+                    System.out.println("0 - Voltar");
+                    System.out.println("Escolha uma opção de ordenação:");
+                    op = scanner.nextInt();
+                    switch (op) {
+
+                        case 1: // ordenar por título
+                            playlist = Song.orderByTitle(playlist);
+                            break;
+                        case 2: // ordenar por artista
+                            playlist = Song.orderByArtist(playlist);
+                            break;
+                        default:
+                            System.out.println("Voltando...");
+
+                    }
                     break;
 
                 case 4: //tocar música
@@ -44,6 +69,45 @@ public class MainAtvd2 {
                     break;
 
                 case 5: //add música no inicio, fim ou posição selecionada
+
+                    System.out.println("Digite o título da música:");
+                    titulo = scanner.nextLine();
+
+                    System.out.println("Digite o artista da música:");
+                    artista = scanner.nextLine();
+
+                    System.out.println("Digite o album da música:");
+                    album = scanner.nextLine();
+
+                    System.out.println("Digite o tempo (em segundos) da música");
+                    segundos = scanner.nextInt();
+
+                    songHandle = new Song(titulo, artista, album, segundos);
+
+                    System.out.println();
+                    System.out.println("Onde deseja salvar a música?");
+                    System.out.println("1 - início da playlist");
+                    System.out.println("2 - fim da playlist");
+                    System.out.println("3 - posição customizada");
+
+                    op = scanner.nextInt();
+
+                    switch (op) {
+
+                        case 1: // Inicio
+                            playlist.inserirNoInicio(songHandle);
+                            break;
+                        case 2: // Fim
+                            playlist.inserirNoFim(songHandle);
+                            break;
+                        case 3: // Por index
+                            System.out.println("Digite a posição para inserir:");
+                            op = scanner.nextInt();
+                            playlist.inserirPorIndex(songHandle, op);
+                            break;
+
+                    }
+
                     break;
 
                 case 6: //rmv música por nome ou por index

@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 public class Song {
 
-    public String titulo;
-    public String artista;
-    public String album;
-    public int segundos;
+    private String titulo;
+    private String artista;
+    private String album;
+    private int segundos;
 
     public Song(String titulo, String artista, String album, int segundos) {
 
