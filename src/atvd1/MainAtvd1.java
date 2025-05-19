@@ -28,36 +28,48 @@ public class MainAtvd1 {
 
             int op = scanner.nextInt();
             Pedido handle;
+            String stringInput;
 
             switch (op) {
 
                 case 0: // Sair
                     System.out.println("Saindo do sistema...");
                     sysOn = false;
+                    break;
 
                 case 1: // Add. novo pedido
                     System.out.println("Descreva o pedido: ");
-                    pendentes.push(new Pedido(scanner.nextLine()));
+                    stringInput = scanner.next();
+                    pendentes.push(new Pedido(stringInput));
                     break;
 
                 case 2: // Atender pedido
                     handle = pendentes.pick();
-                    pendentes.pop();
-                    System.out.println(handle+" removido com sucesso!");
+
+                    if (handle != null) {
+                        pendentes.pop();
+                        System.out.println(handle+" removido com sucesso!");
+                    }
                     break;
 
                 case 3: // Cancelar pedido
                     handle = pendentes.pick();
-                    pendentes.pop();
-                    cancelados.push(handle);
-                    System.out.println(handle+" cancelado com sucesso!");
+
+                    if (handle != null) {
+                        pendentes.pop();
+                        cancelados.push(handle);
+                        System.out.println(handle+" cancelado com sucesso!");
+                    }
                     break;
 
                 case 4: // Restaurar pedido
                     handle = cancelados.pick();
-                    cancelados.pop();
-                    pendentes.push(handle);
-                    System.out.println(handle+" restaurado com sucesso!");
+
+                    if (handle != null) {
+                        cancelados.pop();
+                        pendentes.push(handle);
+                        System.out.println(handle+" restaurado com sucesso!");
+                    }
                     break;
 
                 case 5: // Imprimir pedidos pendentes

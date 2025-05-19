@@ -4,6 +4,12 @@ public class Stack<T> {
 
     private LinkedList<T> data;
 
+    public Stack() {
+
+        data = new LinkedList<>();
+
+    }
+
     public void push(T value) {
 
         data.insertEnd(value);

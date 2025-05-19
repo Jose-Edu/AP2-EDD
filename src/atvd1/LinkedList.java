@@ -10,6 +10,13 @@ public class LinkedList<T> {
         Node2<T> node = new Node2<>(data);
         Node2<T> nodeC = head;
 
+        if (nodeC == null) {
+
+            head = node;
+            size++;
+            return;
+        }
+
         while (nodeC.next != null) {
             nodeC = nodeC.next;
         }
@@ -64,6 +71,9 @@ public class LinkedList<T> {
             nodeRtn = nodeRtn.next;
 
         }
+
+        if (nodeRtn == null)
+            return null;
 
         return nodeRtn.data;
 

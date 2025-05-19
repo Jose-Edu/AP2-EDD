@@ -4,6 +4,10 @@ public class Queue<T> {
 
     private LinkedList<T> data;
 
+    public Queue() {
+        data = new LinkedList<>();
+    }
+
     public void push(T value) {
 
         data.insertEnd(value);
