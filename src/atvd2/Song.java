@@ -18,24 +18,93 @@ public class Song {
 
     }
 
+    public Song(String titulo) {
+
+        this.titulo = titulo;
+        this.artista = "";
+        this.album = "";
+        this.segundos = 0;
+
+    }
+
+    @Override
+    public String toString() {
+        return "\nTítulo: "+titulo+"\n"
+                +"Artista: "+artista+"\n"
+                +"Album: "+album+"\n"
+                +"Duração: "+segundos+" s\n";
+    }
+
+    public boolean equals(Song other) {
+
+       return this.titulo.equals(other.titulo);
+
+    }
+
     public static ListaDuplamenteLigada<Song> orderByTitle(ListaDuplamenteLigada<Song> playlist) {
 
 
         playlist.setNodeByIndex(playlist.getSize()-1);
-        Node<Song> handle = playlist.getAcNode();
+        Node<Song> acNode = playlist.getAcNode();
+        Node<Song> handleNode;
         String[] handleArray;
+        String[] handleArraySorted;
 
         while (playlist.getAcNode().previous != null) {
 
-            handleArray = new String[]{handle.data.titulo, handle.previous.data.titulo};
+            handleArray = new String[]{acNode.data.titulo, acNode.previous.data.titulo};
+            handleArraySorted = new String[]{acNode.data.titulo, acNode.previous.data.titulo};
+            Arrays.sort(handleArraySorted);
 
-            //TODO checar a order mudar a ordem se nescessário
+            if (!Arrays.equals(handleArray, handleArraySorted)) { // se a ordem não estiver certa, ordena
 
-            handle = playlist.previousNode();
+                handleNode = acNode.previous;
+
+                handleNode.next = acNode.next;
+                acNode.previous = handleNode.previous;
+                acNode.next = handleNode;
+                handleNode.previous = acNode;
+
+            }
+
+            acNode = playlist.previousNode();
 
         }
 
+        return  playlist;
+    }
 
+    public static ListaDuplamenteLigada<Song> orderByArtist(ListaDuplamenteLigada<Song> playlist) {
+
+
+        playlist.setNodeByIndex(playlist.getSize()-1);
+        Node<Song> acNode = playlist.getAcNode();
+        Node<Song> handleNode;
+        String[] handleArray;
+        String[] handleArraySorted;
+
+        while (playlist.getAcNode().previous != null) {
+
+            handleArray = new String[]{acNode.data.artista, acNode.previous.data.artista};
+            handleArraySorted = new String[]{acNode.data.artista, acNode.previous.data.artista};
+            Arrays.sort(handleArraySorted);
+
+            if (!Arrays.equals(handleArray, handleArraySorted)) { // se a ordem não estiver certa, ordena
+
+                handleNode = acNode.previous;
+
+                handleNode.next = acNode.next;
+                acNode.previous = handleNode.previous;
+                acNode.next = handleNode;
+                handleNode.previous = acNode;
+
+            }
+
+            acNode = playlist.previousNode();
+
+        }
+
+        return  playlist;
     }
 
 

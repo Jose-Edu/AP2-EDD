@@ -121,6 +121,34 @@ public class ListaDuplamenteLigada<T> {
 
     }
 
+    public void inserirPorIndex(T data, int i) {
+
+        if (i < 0 || i > size-1) {
+            System.out.println("Index inválido!");
+            return;
+        }
+
+        Node<T> acNode = head;
+
+        for (int c=0; c < i; c++) {
+            acNode = acNode.next;
+        }
+
+        Node<T> newNode = new Node<>(data);
+        newNode.previous = acNode;
+        newNode.next = acNode.next;
+        acNode.next = newNode;
+        size++;
+
+        if(size-1 == i) {
+            end = newNode;
+        }
+        if (i == 0) {
+            head = newNode;
+        }
+
+    }
+
     public void imprimir() {
 
         if (head == null)
@@ -165,7 +193,7 @@ public class ListaDuplamenteLigada<T> {
         Node<T> nodeAc = this.head;
 
         while (nodeAc != null) {
-            if (nodeAc.data == data) {
+            if (nodeAc.data.equals(data)) {
 
                 // First
                 if (nodeAc == this.head) {
@@ -190,6 +218,35 @@ public class ListaDuplamenteLigada<T> {
         }
 
         size--;
+
+    }
+
+    public void removerPorIndex(int i) {
+
+        if (i < 0 || i > size-1) {
+            System.out.println("Index inválido!");
+            return;
+        }
+
+        Node<T> acNode = head;
+        size--;
+
+        for (int c=0; c < i; c++) {
+            acNode = acNode.next;
+        }
+
+        if (i == size-1) {
+            acNode.next = null;
+            return;
+        }
+
+        if (i == 0) {
+            acNode.next.previous = null;
+            return;
+        }
+
+        acNode.next = acNode.next.next;
+        acNode.next.previous = acNode;
 
     }
 
