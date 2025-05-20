@@ -1,6 +1,7 @@
 package atvd2;
 
 import java.util.Arrays;
+import java.lang.Object;
 
 public class Song {
 
@@ -35,9 +36,14 @@ public class Song {
                 +"Duração: "+segundos+" s";
     }
 
-    public boolean equals(Song other) {
+    @Override
+    public boolean equals(Object o) {
 
-       return this.titulo.equals(other.titulo);
+       if(o.getClass() == Song.class) {
+           return this.titulo.equals(((Song) o).titulo);
+       }
+
+       return false;
 
     }
 

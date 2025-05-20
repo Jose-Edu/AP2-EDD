@@ -125,7 +125,7 @@ public class ListaDuplamenteLigada<T> {
 
     public void inserirPorIndex(T data, int i) {
 
-        if (i < 0 || i > size-1) {
+        if (i < 0 || i > size) {
             System.out.println("Index inválido!");
             return;
         }
@@ -135,7 +135,7 @@ public class ListaDuplamenteLigada<T> {
             return;
         }
 
-        if (i == size-1) {
+        if (i == size) {
             this.inserirNoFim(data);
             return;
         }
@@ -149,7 +149,7 @@ public class ListaDuplamenteLigada<T> {
         Node<T> newNode = new Node<>(data);
         newNode.previous = acNode;
         newNode.next = acNode.next;
-        //acNode.next = newNode;
+        acNode.next = newNode;
         size++;
 
     }
@@ -220,6 +220,7 @@ public class ListaDuplamenteLigada<T> {
                 if (nodeAc == this.head) {
                     head = head.next;
                     if (head != null) head.previous = null;
+                    size--;
                     return;
                 }
 
@@ -227,19 +228,22 @@ public class ListaDuplamenteLigada<T> {
                 if (nodeAc == end) {
                     end = end.previous;
                     if(end!=null) end.next = null;
+                    size--;
                     return;
                 }
 
                 // Any other
                 nodeAc.previous.next = nodeAc.next;
                 nodeAc.next.previous = nodeAc.previous;
+                size--;
+                return;
 
             }
 
             nodeAc = nodeAc.next;
         }
 
-        size--;
+        System.out.println("Valor não encontrado!");
 
     }
 
@@ -253,18 +257,20 @@ public class ListaDuplamenteLigada<T> {
         Node<T> acNode = head;
         size--;
 
-        for (int c=0; c < i; c++) {
-            acNode = acNode.next;
-        }
-
-        if (i == size-1) {
-            acNode.next = null;
-            return;
-        }
-
         if (i == 0) {
+            head = acNode.next;
             acNode.next.previous = null;
             return;
+        }
+
+        if (i == size) {
+            end = end.previous;
+            end.next = null;
+            return;
+        }
+
+        for (int c=0; c < i-1; c++) {
+            acNode = acNode.next;
         }
 
         acNode.next = acNode.next.next;
