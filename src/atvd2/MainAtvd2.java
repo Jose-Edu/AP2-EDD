@@ -22,7 +22,7 @@ public class MainAtvd2 {
             System.out.println();
             System.out.println("1 - Próxima música");
             System.out.println("2 - Música anterior");
-            System.out.println("3 - Ordernar música");
+            System.out.println("3 - Ordernar músicas");
             System.out.println("4 - Tocar música");
             System.out.println("5 - Adicionar música");
             System.out.println("6 - Remover música");
@@ -35,14 +35,29 @@ public class MainAtvd2 {
             switch (op) {
 
                 case 1: //avançar
+                    if (playlist.getAcNode() == null) {
+                        System.out.println("Lista vazia...");
+                        break;
+                    }
+
                     playlist.nextNode();
                     break;
 
                 case 2: //voltar
+                    if (playlist.getAcNode() == null) {
+                        System.out.println("Lista vazia...");
+                        break;
+                    }
+
                     playlist.previousNode();
                     break;
 
                 case 3: //ordenar por título ou por artista
+
+                    if (playlist.getAcNode() == null) {
+                        System.out.println("Lista vazia...");
+                        break;
+                    }
 
                     System.out.println();
                     System.out.println("1 - Ordenar por título");
@@ -65,19 +80,19 @@ public class MainAtvd2 {
                     break;
 
                 case 4: //tocar música
-                    System.out.println(playlist.getAcNode().data);
+                    playlist.imprimirAtual();
                     break;
 
                 case 5: //add música no inicio, fim ou posição selecionada
 
                     System.out.println("Digite o título da música:");
-                    titulo = scanner.nextLine();
+                    titulo = scanner.next();
 
                     System.out.println("Digite o artista da música:");
-                    artista = scanner.nextLine();
+                    artista = scanner.next();
 
                     System.out.println("Digite o album da música:");
-                    album = scanner.nextLine();
+                    album = scanner.next();
 
                     System.out.println("Digite o tempo (em segundos) da música");
                     segundos = scanner.nextInt();
@@ -111,6 +126,11 @@ public class MainAtvd2 {
 
                 case 6: //rmv música por nome ou por index
 
+                    if (playlist.getAcNode() == null) {
+                        System.out.println("Lista vazia...");
+                        break;
+                    }
+
                     System.out.println("Deseja remover ou nome ou por endereço?");
                     System.out.println("1 - Por nome");
                     System.out.println("2 - Por endereço");
@@ -122,7 +142,7 @@ public class MainAtvd2 {
 
                         case 1: // Por nome
                             System.out.println("Digite o nome da música:");
-                            titulo = scanner.nextLine();
+                            titulo = scanner.next();
                             playlist.removerPorValor(new Song(titulo));
                             break;
 

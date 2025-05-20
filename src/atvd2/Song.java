@@ -29,10 +29,10 @@ public class Song {
 
     @Override
     public String toString() {
-        return "\nTítulo: "+titulo+"\n"
+        return "Título: "+titulo+"\n"
                 +"Artista: "+artista+"\n"
                 +"Album: "+album+"\n"
-                +"Duração: "+segundos+" s\n";
+                +"Duração: "+segundos+" s";
     }
 
     public boolean equals(Song other) {

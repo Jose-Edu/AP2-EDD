@@ -95,6 +95,7 @@ public class ListaDuplamenteLigada<T> {
         if (this.head == null) {
             this.head = node;
             this.end = node;
+            this.size++;
             return;
         }
 
@@ -111,6 +112,7 @@ public class ListaDuplamenteLigada<T> {
         if (this.head == null) {
             this.head = node;
             this.end = node;
+            this.size++;
             return;
         }
 
@@ -128,24 +130,27 @@ public class ListaDuplamenteLigada<T> {
             return;
         }
 
+        if (i == 0) {
+            this.inserirNoInicio(data);
+            return;
+        }
+
+        if (i == size-1) {
+            this.inserirNoFim(data);
+            return;
+        }
+
         Node<T> acNode = head;
 
-        for (int c=0; c < i; c++) {
+        for (int c=0; c < i-1; c++) {
             acNode = acNode.next;
         }
 
         Node<T> newNode = new Node<>(data);
         newNode.previous = acNode;
         newNode.next = acNode.next;
-        acNode.next = newNode;
+        //acNode.next = newNode;
         size++;
-
-        if(size-1 == i) {
-            end = newNode;
-        }
-        if (i == 0) {
-            head = newNode;
-        }
 
     }
 
@@ -156,13 +161,29 @@ public class ListaDuplamenteLigada<T> {
 
         Node<T> nodeAc = head;
 
-        while (nodeAc != null) {
+        System.out.println("Núm. Músicas: "+size);
+        System.out.println();
 
+        for (int c=0; nodeAc != null; c++) {
+
+            System.out.println(c+":");
             System.out.println(nodeAc.data);
+            System.out.println();
             nodeAc = nodeAc.next;
 
         }
         System.out.println();
+
+    }
+
+    public void imprimirAtual() {
+
+        if (this.getAcNode() == null) {
+            System.out.println("Lista vazia...");
+            return;
+        }
+
+        System.out.println(this.getAcNode().data);
 
     }
 
@@ -209,6 +230,7 @@ public class ListaDuplamenteLigada<T> {
                     return;
                 }
 
+                // Any other
                 nodeAc.previous.next = nodeAc.next;
                 nodeAc.next.previous = nodeAc.previous;
 
