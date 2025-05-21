@@ -68,10 +68,10 @@ public class MainAtvd2 {
                     switch (op) {
 
                         case 1: // ordenar por título
-                            playlist = Song.orderByTitle(playlist);
+                            Song.orderByTitle(playlist);
                             break;
                         case 2: // ordenar por artista
-                            playlist = Song.orderByArtist(playlist);
+                            Song.orderByArtist(playlist);
                             break;
                         default:
                             System.out.println("Voltando...");

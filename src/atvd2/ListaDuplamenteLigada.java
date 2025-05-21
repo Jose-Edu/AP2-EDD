@@ -2,8 +2,8 @@ package atvd2;
 
 public class ListaDuplamenteLigada<T> {
 
-    private Node<T> head;
-    private Node<T> end;
+    public Node<T> head;
+    public Node<T> end;
     private Node<T> acNode;
     private int size;
 
@@ -62,18 +62,21 @@ public class ListaDuplamenteLigada<T> {
 
     public void setNodeByIndex(int i) {
 
-        Node<T> node = head;
+        if (i > size-1 || i < 0) {
+            System.out.println("Index inválido!");
+            return;
+        }
+
+        this.acNode = head;
 
         for (int c = 0; c < i; c++) {
 
-            if (node == null)
+            if (this.acNode == null)
                 return;
 
-            node = node.next;
+            this.nextNode();
 
         }
-
-        this.acNode = node;
 
     }
 
